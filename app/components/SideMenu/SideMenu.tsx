@@ -19,7 +19,6 @@ const SideMenu = ({ currentUser }: any) => {
 			// Assume this function fetches the current user
 			// If no current user, redirect to auth page
 			if (!currentUser) {
-				loginModal.onOpen();
 			}
 		};
 
@@ -31,8 +30,10 @@ const SideMenu = ({ currentUser }: any) => {
 			<h2 className="text-white text-3xl my-4 mx-2">FindHelp</h2>
 			<button
 				onClick={() => router.push("/")}
-				className={` hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl text-neutral-100 ${
-					pathname === "/" ? "bg-neutral-800/75" : "bg-neutral-800/0"
+				className={` cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl  ${
+					pathname === "/"
+						? "bg-indigo-400 hover:bg-indigo-500 text-black"
+						: "bg-neutral-800/0 hover:bg-neutral-700/25 text-neutral-100"
 				}`} // Apply active class
 			>
 				Explore
@@ -41,26 +42,30 @@ const SideMenu = ({ currentUser }: any) => {
 				onClick={() =>
 					currentUser ? router.push("/my-posts") : loginModal.onOpen()
 				}
-				className={` hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl text-neutral-100 ${
-					pathname === "/my-posts" ? "bg-neutral-800/75" : "bg-neutral-800/0"
+				className={`  cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl ${
+					pathname === "/my-posts"
+						? "bg-indigo-400 hover:bg-indigo-500 text-black"
+						: "bg-neutral-800/0 hover:bg-neutral-700/25 text-neutral-100 "
 				}`} // Apply active class
 			>
 				My Posts
 			</button>
 			<button
 				onClick={() => (currentUser ? postModal.onOpen() : loginModal.onOpen())}
-				className={` hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl text-neutral-100 ${
-					pathname === "/new-post" ? "bg-neutral-800/75" : "bg-neutral-800/0"
+				className={` hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl ${
+					pathname === "/new-post"
+						? "bg-indigo-400 text-black"
+						: "bg-neutral-800/0 text-neutral-100 "
 				}`} // Apply active class
 			>
 				New Post
 			</button>
 			<button
 				onClick={() => router.push("/help-numbers")}
-				className={` hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl text-neutral-100 ${
+				className={` cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl ${
 					pathname === "/help-numbers"
-						? "bg-neutral-800/75"
-						: "bg-neutral-800/0"
+						? "bg-indigo-400 hover:bg-indigo-500 text-black"
+						: "bg-neutral-800/0 hover:bg-neutral-700/25 text-neutral-100"
 				}`} // Apply active class
 			>
 				Help Numbers
@@ -69,8 +74,10 @@ const SideMenu = ({ currentUser }: any) => {
 				onClick={() =>
 					currentUser ? router.push("/profile") : loginModal.onOpen()
 				}
-				className={` hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl text-neutral-100 ${
-					pathname === "/profile" ? "bg-neutral-800/75" : "bg-neutral-800/0"
+				className={`cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl ${
+					pathname === "/profile"
+						? "bg-indigo-400 hover:bg-indigo-500 text-black"
+						: "bg-neutral-800/0 hover:bg-neutral-700/25 text-neutral-100 "
 				}`} // Apply active class
 			>
 				Profile
@@ -78,7 +85,10 @@ const SideMenu = ({ currentUser }: any) => {
 			{currentUser ? (
 				<div className="mt-auto">
 					<button
-						onClick={() => signOut()}
+						onClick={async () => {
+							await signOut();
+							router.push("/landing");
+						}}
 						className="bg-neutral-800/75 hover:bg-neutral-700/25 cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl text-neutral-100"
 					>
 						Logout

@@ -25,6 +25,7 @@ const PostModal = () => {
 		defaultValues: {
 			title: "",
 			text: "",
+			tags: "",
 		},
 	});
 
@@ -32,7 +33,13 @@ const PostModal = () => {
 		setIsLoading(true);
 
 		try {
-			const response = await axios.post("/api/posts", data);
+			const tagsArray = data.tags.split(",").map((tag: any) => tag.trim()); // Parse tags string into array
+
+			const response = await axios.post("/api/posts", {
+				title: data.title,
+				text: data.text,
+				tags: tagsArray, // Include tags in the data object
+			});
 			console.log("Post created:", response.data);
 			toast.success("Post created successfully");
 			setIsLoading(false);
@@ -68,6 +75,13 @@ const PostModal = () => {
 				errors={errors}
 				isTextarea={true}
 				required
+				register={register}
+			/>
+			<Input
+				id="tags"
+				label="Tags (separated by commas)"
+				disabled={isLoading}
+				errors={errors}
 				register={register}
 			/>
 		</div>

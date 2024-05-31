@@ -3,7 +3,7 @@ import prisma from "@/app/libs/prismadb";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-	const { title, text, userId } = await req.json();
+	const { title, text, userId, tags } = await req.json(); // Add tags to destructuring
 	const currentUser = await getCurrentUser();
 
 	if (!currentUser) {
@@ -18,9 +18,10 @@ export async function POST(req: Request) {
 				title,
 				text,
 				userId: currentUser.id,
+				tags, // Save the tags with the post
 			},
 			include: {
-				user: true, // Include the user information in the response
+				user: true,
 			},
 		});
 

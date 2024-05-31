@@ -28,6 +28,8 @@ model Post {
   userId         String
   user           User     @relation("UserToPost", fields: [userId], references: [id])
   comments       Comment[] @relation("PostToComment")
+  tags           String[] @map("tags") @unique
+
 }
 
 model Comment {

@@ -27,6 +27,19 @@ const Post = async ({ post }: any) => {
 			<div className="mt-2">
 				<h1 className="text-2xl text-white font-bold">{post.title}</h1>
 				<p className="text-lg text-neutral-300 mt-2">{post.text}</p>
+				{/* Tags */}
+
+				<div className="flex gap-2 mt-2">
+					{post.tags &&
+						post.tags.map((tag: any, i: any) => (
+							<p
+								className="py-1 px-3 rounded-full bg-indigo-400 text-black"
+								key={i}
+							>
+								{tag}
+							</p>
+						))}
+				</div>
 			</div>
 		</Link>
 	);
