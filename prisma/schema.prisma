@@ -7,6 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
 model User {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   name           String
@@ -15,5 +17,24 @@ model User {
   hashedPassword String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
-  favoriteIds    String[] @db.ObjectId
+  posts          Post[]   @relation("UserToPost")
+  comments       Comment[] @relation("UserToComment")
+}
+
+model Post {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  text           String
+  userId         String
+  user           User     @relation("UserToPost", fields: [userId], references: [id])
+  comments       Comment[] @relation("PostToComment")
+}
+
+model Comment {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  text           String
+  userId         String
+  user           User     @relation("UserToComment", fields: [userId], references: [id])
+  postId         String
+  post           Post     @relation("PostToComment", fields: [postId], references: [id])
 }

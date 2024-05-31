@@ -43,6 +43,36 @@ const RegisterModal = () => {
 				return;
 			}
 
+			if (data.name.length < 4) {
+				toast.error("Name should be at least 4 characters long");
+				setIsLoading(false);
+				return;
+			} else if (data.name.length > 20) {
+				toast.error("Name should be at most 20 characters long");
+				setIsLoading(false);
+				return;
+			}
+
+			if (data.username.length < 4) {
+				toast.error("Username should be at least 4 characters long");
+				setIsLoading(false);
+				return;
+			} else if (data.username.length > 20) {
+				toast.error("Username should be at most 20 characters long");
+				setIsLoading(false);
+				return;
+			}
+
+			if (data.email.length < 4) {
+				toast.error("Email should be at least 4 characters long");
+				setIsLoading(false);
+				return;
+			} else if (data.email.length > 20) {
+				toast.error("Email should be at most 20 characters long");
+				setIsLoading(false);
+				return;
+			}
+
 			await axios.post("/api/register", data);
 
 			registerModal.onClose();
@@ -78,7 +108,10 @@ const RegisterModal = () => {
 
 	const bodyContent = (
 		<div className="flex flex-col gap-3">
-			<Heading title="Register" subtitle="Create an account" />
+			<Heading
+				title="100% Anonymous"
+				subtitle="Only username will be visible, don't enter your real name"
+			/>
 			<div className="flex gap-3">
 				<Input
 					id="name"

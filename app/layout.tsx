@@ -7,6 +7,8 @@ import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/Modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import { usePathname } from "next/navigation";
+import SideMenu from "./components/SideMenu/SideMenu";
+import PostModal from "./components/Modals/PostModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +33,9 @@ export default async function RootLayout({
 				<ToasterProvider />
 				<RegisterModal />
 				<LoginModal />
+				<PostModal />
 				<Navbar currentUser={currentUser} />
+				<SideMenu currentUser={currentUser} />
 				{children}
 			</body>
 		</html>

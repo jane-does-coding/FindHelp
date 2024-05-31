@@ -9,7 +9,7 @@ interface NavbarProps {
 
 const Navbar = ({ currentUser }: NavbarProps) => {
 	return (
-		<nav className="fixed top-8 right-8 w-fit bg-neutral-800 rounded-full z-10">
+		<nav className="flex md:hidden fixed top-4 right-4 w-fit bg-neutral-800 rounded-full z-10">
 			<div className="flex">
 				<UserMenu currentUser={currentUser} />
 			</div>

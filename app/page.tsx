@@ -1,10 +1,15 @@
+import { useState } from "react";
 import SideMenu from "./components/SideMenu/SideMenu";
+import axios from "axios";
+import getPosts from "./actions/getPosts";
+import Posts from "./components/Feed/Posts";
 
-export default function Home() {
+export default async function Home() {
+	const posts = await getPosts();
+
 	return (
-		<div className="flex w-[100vw] h-screen overflow-hidden">
-			<SideMenu />
-			<div className="w-[80vw] h-screen absolute left-[20vw] top-0 bg-black/25 overflow-auto"></div>
+		<div className="ml-[20vw] text-white bg-black/25 w-[80vw] h-screen">
+			<Posts posts={posts} />
 		</div>
 	);
 }

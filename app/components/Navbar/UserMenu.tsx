@@ -7,10 +7,12 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import usePostModal from "@/app/hooks/usePostModal";
 
 const UserMenu = ({ currentUser }: { currentUser?: User | null }) => {
 	const registerModal = useRegisterModal();
 	const loginModal = useLoginModal();
+	const postModal = usePostModal();
 	const router = useRouter();
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -36,11 +38,28 @@ const UserMenu = ({ currentUser }: { currentUser?: User | null }) => {
 						{currentUser ? (
 							<>
 								<MenuItem onClick={() => router.push("/")} label="Home" />
+								<MenuItem
+									onClick={() => router.push("/help-numbers")}
+									label="Help Numbers"
+								/>
+								<MenuItem
+									onClick={() => router.push("/my-posts")}
+									label="My Posts"
+								/>
+								<MenuItem
+									onClick={() => router.push("/profile")}
+									label="Profile"
+								/>
+								<MenuItem onClick={() => postModal.onOpen()} label="New Post" />
 								<MenuItem onClick={() => signOut()} label="Logout" />
 							</>
 						) : (
 							<>
 								<MenuItem onClick={() => router.push("/")} label="Home" />
+								<MenuItem
+									onClick={() => router.push("/help-numbers")}
+									label="Help Numbers"
+								/>
 								<MenuItem onClick={loginModal.onOpen} label="Login" />
 								<MenuItem onClick={registerModal.onOpen} label="Signup" />
 							</>
