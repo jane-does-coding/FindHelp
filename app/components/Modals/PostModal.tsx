@@ -32,8 +32,15 @@ const PostModal = () => {
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		setIsLoading(true);
 
+		if (data.title.length > 51) {
+			toast.error("Title can't be longer than 50 characters long");
+		} else if (data.title.length < 6) {
+			toast.error("Title should be at least 5 characters long");
+		}
+
 		try {
 			const tagsArray = data.tags.split(",").map((tag: any) => tag.trim()); // Parse tags string into array
+			console.log(tagsArray);
 
 			const response = await axios.post("/api/posts", {
 				title: data.title,
@@ -41,9 +48,10 @@ const PostModal = () => {
 				tags: tagsArray, // Include tags in the data object
 			});
 			console.log("Post created:", response.data);
+			router.refresh();
 			toast.success("Post created successfully");
 			setIsLoading(false);
-			// Optionally, you can close the modal here if needed
+			PostModal.onClose();
 		} catch (error) {
 			console.error("Error creating post:", error);
 			toast.error("Failed to create post");

@@ -4,7 +4,6 @@ import React from "react";
 
 const page = async () => {
 	const posts = await getUserPosts();
-	console.log(posts);
 
 	return (
 		<div className="ml-[20vw] text-white bg-black/25 w-[80vw] h-screen">

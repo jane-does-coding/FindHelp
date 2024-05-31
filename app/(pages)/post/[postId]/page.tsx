@@ -1,4 +1,5 @@
 import getPostById from "@/app/actions/getPostById";
+import getPostComments from "@/app/actions/getPostComments";
 import getUserbyId from "@/app/actions/getUserById";
 import PostPage from "@/app/components/PostPage";
 import React from "react";
@@ -6,6 +7,7 @@ import React from "react";
 const page = async ({ params }: { params: { postId: string } }) => {
 	const postId = params.postId;
 	const post = await getPostById(postId);
+	const comments = await getPostComments(postId);
 
 	if (!post) return "idk";
 
@@ -14,7 +16,7 @@ const page = async ({ params }: { params: { postId: string } }) => {
 
 	return (
 		<div>
-			<PostPage post={post} user={user} />
+			<PostPage post={post} user={user} comments={comments} />
 		</div>
 	);
 };

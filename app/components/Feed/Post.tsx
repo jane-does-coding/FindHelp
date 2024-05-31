@@ -25,21 +25,24 @@ const Post = async ({ post }: any) => {
 				</div>
 			</div>
 			<div className="mt-2">
-				<h1 className="text-2xl text-white font-bold">{post.title}</h1>
-				<p className="text-lg text-neutral-300 mt-2">{post.text}</p>
+				<h1 className="text-3xl text-white font-bold jura">{post.title}</h1>
+				<p className="text-lg text-neutral-300 mt-2">
+					{post.text.length > 100 ? post.text.slice(0, 100) + "..." : post.text}
+				</p>
 				{/* Tags */}
-
-				<div className="flex gap-2 mt-2">
-					{post.tags &&
-						post.tags.map((tag: any, i: any) => (
-							<p
-								className="py-1 px-3 rounded-full bg-indigo-400 text-black"
-								key={i}
-							>
-								{tag}
-							</p>
-						))}
-				</div>
+				{post.tags.length > 0 && (
+					<div className="flex gap-2 mt-4">
+						{post.tags &&
+							post.tags.map((tag: any, i: any) => (
+								<p
+									className="py-1 px-3 rounded-full bg-indigo-400 text-black jura font-semibold"
+									key={i}
+								>
+									{tag}
+								</p>
+							))}
+					</div>
+				)}
 			</div>
 		</Link>
 	);

@@ -28,8 +28,8 @@ model Post {
   userId         String
   user           User     @relation("UserToPost", fields: [userId], references: [id])
   comments       Comment[] @relation("PostToComment")
-  tags           String[] @map("tags") @unique
-
+  tags           String[] 
+  createdAt      DateTime @default(now())
 }
 
 model Comment {
@@ -39,4 +39,5 @@ model Comment {
   user           User     @relation("UserToComment", fields: [userId], references: [id])
   postId         String
   post           Post     @relation("PostToComment", fields: [postId], references: [id])
+  createdAt      DateTime @default(now())
 }
