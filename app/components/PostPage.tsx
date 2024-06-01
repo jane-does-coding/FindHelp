@@ -11,8 +11,8 @@ const PostPage = ({ post, user, comments }: any) => {
 	const { title, text } = post;
 
 	return (
-		<div className="ml-[20vw] w-[80vw] flex flex-col min-h-screen bg-black/25 p-4">
-			<div className="bg-neutral-800/50 p-6 rounded-lg shadow-lg w-full w-full">
+		<div className="md:ml-[20vw] w-[100vw] md:w-[80vw] flex flex-col min-h-screen bg-black/25 p-4">
+			<div className="bg-neutral-800/50 p-6 rounded-lg shadow-lg w-full">
 				<motion.div
 					initial={{ opacity: 0, y: 25 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ const PostPage = ({ post, user, comments }: any) => {
 						{text}
 					</motion.p>
 				</div>
-				<div className="flex gap-2 mt-2 mb-10">
+				<div className="flex flex-wrap gap-2 mt-2 mb-10">
 					{post.tags &&
 						post.tags.map((tag: any, i: number) => (
 							<motion.p

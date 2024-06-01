@@ -31,7 +31,7 @@ const Post = async ({ post }: any) => {
 				</p>
 				{/* Tags */}
 				{post.tags.length > 0 && (
-					<div className="flex gap-2 mt-4">
+					<div className="flex flex-wrap gap-2 mt-4">
 						{post.tags &&
 							post.tags.map((tag: any, i: any) => (
 								<p

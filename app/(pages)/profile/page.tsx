@@ -8,7 +8,7 @@ const page = async () => {
 
 	return (
 		<div className="flex justify-center items-center min-h-screen bg-black/25 p-8">
-			<div className="w-full md:w-[70vw] ml-[20vw] bg-neutral-800/50 rounded-lg shadow-lg text-center p-8 xl:p-16">
+			<div className="w-full md:w-[70vw] md:ml-[20vw] bg-neutral-800/50 rounded-lg shadow-lg text-center p-8 xl:p-16">
 				<h1 className="text-neutral-200 text-4xl mb-6">Profile</h1>
 				<img
 					src="/avatar.png"

@@ -9,7 +9,7 @@ const page = async () => {
 	if (!posts) return <h1>nothing</h1>;
 
 	return (
-		<div className="ml-[20vw] text-white bg-black/25 w-[80vw] h-screen">
+		<div className="md:ml-[20vw] text-white bg-black/25 w-[100vw] md:w-[80vw] h-screen">
 			<Posts posts={posts} />
 		</div>
 	);
