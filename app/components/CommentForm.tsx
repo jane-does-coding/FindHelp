@@ -4,11 +4,14 @@ import Input from "./Inputs/Input";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import useLoginModal from "../hooks/useLoginModal";
 
-const CommentForm = ({ postId }: any) => {
+const CommentForm = ({ postId, currentUser }: any) => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 	const router = useRouter();
+	const loginModal = useLoginModal();
+
 	const {
 		register,
 		handleSubmit,
@@ -19,6 +22,11 @@ const CommentForm = ({ postId }: any) => {
 	const onSubmit = async (data: any) => {
 		setLoading(true);
 		setError("");
+
+		if (!currentUser) {
+			setLoading(false);
+			loginModal.onOpen();
+		}
 
 		try {
 			const res = await fetch("/api/comments", {

@@ -8,7 +8,9 @@ const PostPage = ({
 	post,
 	user,
 	comments,
+	currentUser,
 }: {
+	currentUser: User | null;
 	post: Post;
 	user: User | null;
 	comments: Comment[] | null;
@@ -73,7 +75,7 @@ const PostPage = ({
 						))}
 				</div>
 				{/* Comment Form */}
-				<CommentForm postId={post.id} />
+				<CommentForm currentUser={currentUser} postId={post.id} />
 
 				{comments && comments.length > 0 ? (
 					<Comments comments={comments} />
