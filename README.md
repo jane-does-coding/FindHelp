@@ -11,7 +11,7 @@ There are many people who need help, but can't speak up about it, for whatever r
 
 ## Demo
 
-[SilentSupport - Live Demo](https://specify-summit-hacks.vercel.app)
+[SilentSupport - Live Demo](https://silent-support.vercel.app/)
 
 ## Functionality
 
