@@ -5,7 +5,7 @@ export default async function getUserPosts() {
 	try {
 		const currentUser = await getCurrentUser();
 
-		if (!currentUser) return "no user";
+		if (!currentUser) return null;
 
 		const posts = await prisma.post.findMany({
 			where: {
