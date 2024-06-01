@@ -1,9 +1,18 @@
 "use client";
+import { Comment, Post, User } from "@prisma/client";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments/Comments";
 import { motion } from "framer-motion";
 
-const PostPage = ({ post, user, comments }: any) => {
+const PostPage = ({
+	post,
+	user,
+	comments,
+}: {
+	post: Post;
+	user: User | null;
+	comments: Comment[] | null;
+}) => {
 	if (!post) {
 		return <div>Loading...</div>;
 	}
@@ -21,7 +30,7 @@ const PostPage = ({ post, user, comments }: any) => {
 				>
 					<img
 						src={"/avatar.png"}
-						alt={`${user?.name}'s avatar`}
+						alt={`${user?.name || "Anonymous"}'s avatar`}
 						className="w-14 h-14 rounded-full object-cover border-2 border-neutral-600"
 					/>
 					<div className="ml-4">
@@ -66,7 +75,7 @@ const PostPage = ({ post, user, comments }: any) => {
 				{/* Comment Form */}
 				<CommentForm postId={post.id} />
 
-				{comments.length > 0 ? (
+				{comments && comments.length > 0 ? (
 					<Comments comments={comments} />
 				) : (
 					<h1 className="mt-8 mx-auto text-center text-white text-3xl jura">

@@ -5,7 +5,7 @@ export default async function getPostComments(postId: any) {
 	try {
 		const currentUser = await getCurrentUser();
 
-		if (!currentUser) return "no user";
+		if (!currentUser) return null;
 
 		const comments = await prisma.comment.findMany({
 			where: {
