@@ -7,7 +7,8 @@ const page = async () => {
 
 	return (
 		<div className="ml-[20vw] text-white bg-black/25 w-[80vw] h-screen">
-			<Posts posts={posts} />
+			{/* 			<Posts posts={posts} />
+			 */}{" "}
 		</div>
 	);
 };
