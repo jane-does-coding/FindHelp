@@ -5,7 +5,7 @@ import React from "react";
 const Post = async ({ post }: any) => {
 	const user = await getUserbyId({ userId: post.userId });
 
-	if (!user) return "user not found";
+	if (!user) return <p>no user</p>;
 
 	return (
 		<Link
