@@ -28,7 +28,9 @@ const SideMenu = ({ currentUser }: any) => {
 
 	return (
 		<div className="hidden md:flex w-[20vw] bg-neutral-900 border-r-2 border-black/25 h-screen fixed left-0 top-0 p-2 xl:p-3 flex-col gap-2">
-			<h2 className="text-white text-3xl my-4 mx-2 jura">FindHelp</h2>
+			<h2 className="text-white text-2xl xl:text-3xl my-4 mx-2 jura">
+				SilentSupport
+			</h2>
 			<button
 				onClick={() => router.push("/")}
 				className={` cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl jura font-semibold  ${
