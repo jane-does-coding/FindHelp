@@ -13,7 +13,7 @@ import usePostModal from "@/app/hooks/usePostModal";
 
 const PostModal = () => {
 	const registerModal = useRegisterModal();
-	const PostModal = usePostModal();
+	const postModal = usePostModal();
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
@@ -21,6 +21,7 @@ const PostModal = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<FieldValues>({
 		defaultValues: {
 			title: "",
@@ -40,7 +41,6 @@ const PostModal = () => {
 
 		try {
 			const tagsArray = data.tags.split(",").map((tag: any) => tag.trim()); // Parse tags string into array
-			console.log(tagsArray);
 
 			const response = await axios.post("/api/posts", {
 				title: data.title,
@@ -50,24 +50,23 @@ const PostModal = () => {
 			console.log("Post created:", response.data);
 			router.refresh();
 			toast.success("Post created successfully");
-			setIsLoading(false);
-			PostModal.onClose();
+			reset(); // Reset the form fields
+			postModal.onClose();
 		} catch (error) {
 			console.error("Error creating post:", error);
 			toast.error("Failed to create post");
+		} finally {
 			setIsLoading(false);
 		}
 	};
 
 	const switchModal = () => {
-		PostModal.onClose();
+		postModal.onClose();
 		registerModal.onOpen();
 	};
 
 	const bodyContent = (
 		<div className="flex flex-col gap-3">
-			{/* 			<Heading title="Login" subtitle="Please sign in" />
-			 */}{" "}
 			<Input
 				id="title"
 				label="Title"
@@ -112,10 +111,10 @@ const PostModal = () => {
 	return (
 		<Modal
 			disabled={isLoading}
-			isOpen={PostModal.isOpen}
+			isOpen={postModal.isOpen}
 			title="New Post"
 			actionLabel="Create Post"
-			onClose={PostModal.onClose}
+			onClose={postModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
 			footer={footerContent}

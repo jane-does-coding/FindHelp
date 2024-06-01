@@ -3,6 +3,9 @@ import { Comment, Post, User } from "@prisma/client";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments/Comments";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const PostPage = ({
 	post,
@@ -20,6 +23,18 @@ const PostPage = ({
 	}
 
 	const { title, text } = post;
+	const router = useRouter();
+
+	const onDelete = async () => {
+		try {
+			await axios.delete(`/api/posts/${post.id}`);
+			router.push("/");
+			router.refresh();
+		} catch (error) {
+			console.error("Error deleting post:", error);
+			alert("Failed to delete the post");
+		}
+	};
 
 	return (
 		<div className="md:ml-[20vw] w-[100vw] md:w-[80vw] flex flex-col min-h-screen bg-black/25 p-4">
@@ -41,6 +56,14 @@ const PostPage = ({
 						</h2>
 						<p className="text-sm text-neutral-400"></p>
 					</div>
+					{currentUser && currentUser.id == post.userId && (
+						<button
+							className="text-white ml-auto bg-neutral-700 p-3 rounded-full"
+							onClick={() => onDelete()}
+						>
+							<FaRegTrashAlt className="w-6 h-6" />
+						</button>
+					)}
 				</motion.div>
 				<div>
 					<motion.h1
