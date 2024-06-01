@@ -1,7 +1,7 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import React from "react";
 
-const ProfilePage = async () => {
+const page = async () => {
 	const currentUser = await getCurrentUser();
 
 	if (!currentUser) return;
@@ -40,4 +40,4 @@ const ProfilePage = async () => {
 	);
 };
 
-export default ProfilePage;
+export default page;
