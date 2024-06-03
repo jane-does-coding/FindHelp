@@ -43,10 +43,10 @@ const SideMenu = ({ currentUser }: any) => {
 			</button>
 			<button
 				onClick={() =>
-					currentUser ? router.push("/my-posts") : loginModal.onOpen()
+					currentUser ? router.push("/my_posts") : loginModal.onOpen()
 				}
 				className={`  cursor-pointer transition w-full p-3 xl:p-4 rounded-xl flex items-center justify-start text-md xl:text-xl jura font-semibold ${
-					pathname === "/my-posts"
+					pathname === "/my_posts"
 						? "bg-indigo-400 hover:bg-indigo-300 text-black"
 						: "bg-neutral-800/0 hover:bg-neutral-700/25 text-neutral-100 "
 				}`} // Apply active class
